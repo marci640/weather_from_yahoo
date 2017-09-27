@@ -1,0 +1,23 @@
+<h2> <%= @city_name%> Temps </h2>
+
+<%= form_tag "/temps", method: :get do %>
+  <div>
+    City: <input  type="text" name="city" >
+    State: <input type="text" name="state" >
+    <%= submit_tag "Submit" %>
+  </div>
+<% end %>
+
+<h2> Current Temp: <%= @current_temp %> </h2>
+
+<h2> 5 Day Forecast </h2>
+
+<% @forecast[0..4].each do |day| %>
+  <h3> <%= day['date'] %> </h3>
+    <ul> 
+       <li> High: <%= day['high'] %> </li>
+       <li> Low: <%= day['low'] %>  </li>
+       <li>  <%= day['text'] %>  </li>
+    </ul>
+<% end %>
+
