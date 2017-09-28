@@ -1,23 +1,26 @@
-<h2> <%= @city_name%> Temps </h2>
 
-<%= form_tag "/temps", method: :get do %>
-  <div>
-    City: <input  type="text" name="city" >
-    State: <input type="text" name="state" >
-    <%= submit_tag "Submit" %>
-  </div>
-<% end %>
+<body style="background-color:<%=@background%>;">
 
-<h2> Current Temp: <%= @current_temp %> </h2>
+<%=form_tag "/temps", method: :get do %>
+Woeid: <input type="text" name="woeid" >
+<input type="submit" value="Submit" >
+<%end%>
 
-<h2> 5 Day Forecast </h2>
+<h2> <%= @title %></h2>
+<h2> <%= @temp %></h2>
+<h2> <%= @condition %></h2>
+<img src= <%=@image %> >
+<h2> <%= @date %></h2>
 
-<% @forecast[0..4].each do |day| %>
-  <h3> <%= day['date'] %> </h3>
-    <ul> 
-       <li> High: <%= day['high'] %> </li>
-       <li> Low: <%= day['low'] %>  </li>
-       <li>  <%= day['text'] %>  </li>
-    </ul>
-<% end %>
+<% @response.forecasts.each do |day| %>
+    <h2> <%= day.date.strftime('%b %d, %Y')%> </h2>
+    <h3><%=day.high %> </h3>
+    <h3><%=day.low %></h3>
+    <h3><%=day.text %> </h3>
+ <% end %>
+
+</body> 
+
+
+   
 
